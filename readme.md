@@ -3,3 +3,8 @@
 > https://hub.docker.com/r/bitnami/kafka
 
 
+
+---
+Notes: 
+For Kubernetes Helm
+https://github.com/bitnami/charts/tree/master/bitnami/kafka
