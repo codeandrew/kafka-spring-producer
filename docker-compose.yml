@@ -1,6 +1,10 @@
 version: '2'
 
 services:
+  producer:
+    build: ./producer
+    ports:
+      - "8080:8080"
 
   zookeeper:
     image: 'bitnami/zookeeper:latest'
@@ -8,6 +12,7 @@ services:
       - '2181:2181'
     volumes:
       - 'zookeeper_data:/bitnami/zookeeper'
+
   kafka:
     image: 'bitnami/kafka:0'
     ports:
