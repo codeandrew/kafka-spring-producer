@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cd producer
-gradlew build
+./gradlew build
 
 cd ..
 pwd
