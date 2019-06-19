@@ -22,7 +22,7 @@ class KakfaConfiguration {
     fun producerFactory(): ProducerFactory<String, User> {
         val config = mutableMapOf<String, Any>()
 
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092")
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "my-kafka:9092")
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer::class.java)
         config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer::class.java)
 

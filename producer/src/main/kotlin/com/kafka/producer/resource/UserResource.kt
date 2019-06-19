@@ -21,12 +21,10 @@ class UserResource {
     fun post(@PathVariable("name") name: String): String {
 
         kafkaTemplate!!.send(TOPIC, User(name, "Technology", 12000L))
-
         return "Published successfully"
     }
 
     companion object {
-
-        private val TOPIC = "Kafka_Example"
+        private val TOPIC = "test"
     }
 }
