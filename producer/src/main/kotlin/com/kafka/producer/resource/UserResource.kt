@@ -11,20 +11,33 @@ import org.springframework.beans.factory.annotation.Autowired
 
 
 @RestController
-@RequestMapping("kafka")
+@RequestMapping("producer")
 class UserResource {
+
+    @Autowired
+    private val kafkaMessage: KafkaTemplate<String, String>? = null
 
     @Autowired
     private val kafkaTemplate: KafkaTemplate<String, User>? = null
 
-    @GetMapping("/publish/{name}")
-    fun post(@PathVariable("name") name: String): String {
+    @GetMapping("/publish/s/{name}")
+    fun publish(@PathVariable("name") name: String): String {
 
-        kafkaTemplate!!.send(TOPIC, User(name, "Technology", 12000L))
-        return "Published successfully"
+        kafkaMessage!!.send(TOPIC1, name)
+        println("produced message: $name")
+        return "Published successfully: $name"
+    }
+
+    @GetMapping("/publish/o/{object}")
+    fun publishJson(@PathVariable("object") name: String): String {
+        val user = User(name, "Technology", 12000L)
+        kafkaTemplate!!.send(TOPIC2, user)
+        println("produced message: $user")
+        return "Published successfully : $user"
     }
 
     companion object {
-        private val TOPIC = "test"
+        private val TOPIC1 = "test"
+        private val TOPIC2 = "test_json"
     }
 }
